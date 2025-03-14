@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const produtoRoutes = require('./routes');
 
 dotenv.config(); //para carregar as variaveis do arquivo .env (???)
 
@@ -17,6 +18,8 @@ app.use(express.json()); //faz o back entender o json no corpo das requisiçoes 
 
 const PORT = process.env.PORT || 5000;
 
+app.use('/api', produtoRoutes); //faz as rotas ficarem acessíveis em /api/produtos, etc (???)
+
 app.get('/', (req, res) => {
     res.send('Backend está funcionando!');
 });
@@ -24,3 +27,6 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+
+
