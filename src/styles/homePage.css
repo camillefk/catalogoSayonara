@@ -1,0 +1,104 @@
+/* Container principal da homepage */
+.homepage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+  }
+  
+  /* Container dos itens na parte superior */
+  .search-bar-container {
+    display: flex;
+    justify-content: space-between; /* Espaço igual entre os itens */
+    align-items: center; /* Alinha verticalmente os itens */
+    width: 100%;
+    max-width: 1200px; /* Limita a largura máxima para telas grandes */
+    padding: 10px 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Estilos da SearchBar */
+  .search-bar-container input {
+    width: 70%;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Estilos do botão Saiba mais */
+  .saiba-mais-button {
+    width: 20%;
+    padding: 10px 0px;
+    font-size: 1rem;
+    border: none;
+    background-color: #e2c100;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .saiba-mais-button:hover {
+    background-color: #d2b302;
+  }
+  
+  /* Estilos do ícone de usuário */
+  .user-icon {
+    width: 10%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  /* Linha de separação */
+  .separator {
+    width: 95%;
+    border: 0;
+    border-top: 1px solid #000000;
+    margin-top: 10px;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .search-bar-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    
+    }
+  
+    .search-bar-container input {
+        width: 70%;
+        margin-right: 5px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.6rem;
+        border-radius: 20px;
+        padding: 12px;
+        background-color: #e6e6e6;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border:none;
+        transition: all 0.3s ease;
+        padding-left: 35px;
+    }
+
+    .saiba-mais-button {
+        width: 40%;
+        font-size: 0.8rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+        padding: 5px;
+        
+    }
+  
+    .user-icon {
+        width: 25%;
+        text-align: center;
+        font-size: 2.7rem;
+        color: #333e54;
+    }
+  }
+  

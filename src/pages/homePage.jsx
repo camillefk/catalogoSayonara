@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { FaUser } from 'react-icons/fa';
+import { FaUserCircle } from "react-icons/fa";
 import SearchBar from '../components/searchBar/searchBar';
-//import '../styles/homePage';
+import '../styles/homePage.css';
 
 const homePage = () => {
     const navigate = useNavigate();
@@ -9,9 +9,9 @@ const homePage = () => {
     return (
         <div className="homepage-container">
             <div className="search-bar-container">
-                <SearchBar placeholder= "Buscar produtos..." />
+                <SearchBar placeholder= "Digite o nome ou tema do bolo..." />
                 <button className="saiba-mais-button">Saiba mais</button>
-                <FaUser className="user-icon" onClick={() => navigate("/login")} />
+                <FaUserCircle className="user-icon" onClick={() => navigate("/login")} />
             </div>
             <hr className="separator" />
         </div>
