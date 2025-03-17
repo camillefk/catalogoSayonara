@@ -1,5 +1,5 @@
 const express = require('express');
-const Produto = require('./models/Produto');
+const Produto = require('../models/Produto');
 const router = express.Router();
 
 // Rota para listar todos os produtos
