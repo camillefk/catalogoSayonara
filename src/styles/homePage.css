@@ -1,5 +1,5 @@
 /* Container principal da homepage */
-.homepage-container {
+  .homepage-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -100,5 +100,19 @@
         font-size: 2.7rem;
         color: #333e54;
     }
+
+    .category-card {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 18px;
+      font-weight: bold;
+      justify-content: flex-start;
+    }
+
+    .category-icon {
+      color: #e2c100;
+    }
   }
+
   
