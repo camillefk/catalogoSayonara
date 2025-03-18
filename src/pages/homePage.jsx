@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { FaUserCircle } from "react-icons/fa";
+import { TbCategoryFilled } from "react-icons/tb";
 import SearchBar from '../components/searchBar/searchBar';
+import WelcomeCard from '../components/welcomeCard/welcomeCard';
 import '../styles/homePage.css';
 
-const homePage = () => {
+const HomePage = () => {
     const navigate = useNavigate();
 
     return (
@@ -14,8 +16,15 @@ const homePage = () => {
                 <FaUserCircle className="user-icon" onClick={() => navigate("/login")} />
             </div>
             <hr className="separator" />
+            <div className="welcome-card">
+                <WelcomeCard />
+            </div>
+            <div className="category-card">
+                <TbCategoryFilled className='category-icon' />
+                <p>Categorias</p>
+            </div>
         </div>
     );
 };
 
-export default homePage;
+export default HomePage;
