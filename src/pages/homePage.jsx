@@ -3,6 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { TbCategoryFilled } from "react-icons/tb";
 import SearchBar from '../components/searchBar/searchBar';
 import WelcomeCard from '../components/welcomeCard/welcomeCard';
+import VerseSection from '../components/verseSection/verseSection';
 import '../styles/homePage.css';
 
 const HomePage = () => {
@@ -16,6 +17,7 @@ const HomePage = () => {
                 <FaUserCircle className="user-icon" onClick={() => navigate("/login")} />
             </div>
             <hr className="separator" />
+            <VerseSection />
             <div className="welcome-card">
                 <WelcomeCard />
             </div>
