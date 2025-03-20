@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './verseSection.css';
 
 const VerseSection = () => {
     const [verse, setVerse] = useState("");

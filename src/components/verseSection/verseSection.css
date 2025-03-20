@@ -1,0 +1,10 @@
+.verse-section h2 {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.verse-section p {
+    font-style: italic;
+    text-align: center;
+    font-size: 0.7rem;
+}

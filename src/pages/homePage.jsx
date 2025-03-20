@@ -21,9 +21,12 @@ const HomePage = () => {
             <div className="welcome-card">
                 <WelcomeCard />
             </div>
-            <div className="category-card">
+            <div className="category">
                 <TbCategoryFilled className='category-icon' />
                 <p>Categorias</p>
+            </div>
+            <div className="category-card">
+                
             </div>
         </div>
     );

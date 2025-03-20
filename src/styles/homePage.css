@@ -1,64 +1,61 @@
-/* Container principal da homepage */
-  .homepage-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    font-family: Poppins;
-  }
+.homepage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-family: Poppins;
+}
   
-  /* Container dos itens na parte superior */
-  .search-bar-container {
-    display: flex;
-    justify-content: space-between; /* Espaço igual entre os itens */
-    align-items: center; /* Alinha verticalmente os itens */
-    width: 100%;
-    max-width: 1200px; /* Limita a largura máxima para telas grandes */
-    padding: 10px 20px;
-    box-sizing: border-box;
-  }
   
-  /* Estilos da SearchBar */
-  .search-bar-container input {
-    width: 70%;
-    padding: 8px;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
+.search-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
   
-  /* Estilos do botão Saiba mais */
-  .saiba-mais-button {
-    width: 20%;
-    padding: 10px 0px;
-    font-size: 1rem;
-    border: none;
-    background-color: #e2c100;
-    color: white;
-    border-radius: 20px;
-    cursor: pointer;
-  }
+
+.search-bar-container input {
+  width: 70%;
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
   
-  .saiba-mais-button:hover {
-    background-color: #d2b302;
-  }
+
+.saiba-mais-button {
+  width: 20%;
+  padding: 10px 0px;
+  font-size: 1rem;
+  border: none;
+  background-color: #e2c100;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
   
-  /* Estilos do ícone de usuário */
-  .user-icon {
-    width: 10%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    text-align: center;
-  }
+.saiba-mais-button:hover {
+  background-color: #d2b302;
+}
   
-  /* Linha de separação */
-  .separator {
-    width: 95%;
-    border: 0;
-    border-top: 1px solid #000000;
-    margin-top: 10px;
-  }
+.user-icon {
+  width: 10%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  text-align: center;
+}
+  
+.separator {
+  width: 95%;
+  border: 0;
+  border-top: 1px solid #000000;
+  margin-top: 10px;
+}
   
   /* Responsividade */
   @media (max-width: 768px) {
@@ -101,17 +98,19 @@
         color: #333e54;
     }
 
-    .category-card {
+    .category {
       display: flex;
       align-items: center;
       gap: 5px;
       font-size: 18px;
       font-weight: bold;
       justify-content: flex-start;
+      align-self: flex-start;
     }
 
     .category-icon {
       color: #e2c100;
+      font-size: 1.5rem;
     }
   }
 
