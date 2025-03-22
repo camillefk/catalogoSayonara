@@ -4,11 +4,19 @@ import { TbCategoryFilled } from "react-icons/tb";
 import SearchBar from '../components/searchBar/searchBar';
 import WelcomeCard from '../components/welcomeCard/welcomeCard';
 import VerseSection from '../components/verseSection/verseSection';
+import categoryIcon from '../assets/category-icon.png';
 import '../styles/homePage.css';
 
 const categorias = [
-    "casamento", "15 anos", "adulto", "meninas", "meninos",
-    "heróis", "jardim", "princesas", "todos"
+    { nome: "casamento", imagem: categoryIcon },
+    { nome: "15 anos", imagem: categoryIcon },
+    { nome: "adulto", imagem: categoryIcon },
+    { nome: "meninas", imagem: categoryIcon },
+    { nome: "meninos", imagem: categoryIcon },
+    { nome: "heróis", imagem: categoryIcon },
+    { nome: "jardim", imagem: categoryIcon },
+    { nome: "princesas", imagem: categoryIcon },
+    { nome: "todos", imagem: categoryIcon }
 ];
 
 const HomePage = () => {
@@ -37,7 +45,8 @@ const HomePage = () => {
                         className="category-button"
                         onClick={() => navigate(`/categoria/${categoria}`)}
                     >
-                        {categoria}
+                        <img src={categoria.imagem} alt={categoria.nome} className="category-image" />
+                        {categoria.nome}
                     </button>
                 ))}
             </div>
