@@ -4,19 +4,20 @@ import { TbCategoryFilled } from "react-icons/tb";
 import SearchBar from '../components/searchBar/searchBar';
 import WelcomeCard from '../components/welcomeCard/welcomeCard';
 import VerseSection from '../components/verseSection/verseSection';
+import CategoryCard from '../components/categoryCard/categoryCard';
 import categoryIcon from '../assets/category-icon.png';
 import '../styles/homePage.css';
 
 const categorias = [
-    { nome: "casamento", imagem: categoryIcon },
+    { nome: "Casamento", imagem: categoryIcon },
     { nome: "15 anos", imagem: categoryIcon },
-    { nome: "adulto", imagem: categoryIcon },
-    { nome: "meninas", imagem: categoryIcon },
-    { nome: "meninos", imagem: categoryIcon },
-    { nome: "heróis", imagem: categoryIcon },
-    { nome: "jardim", imagem: categoryIcon },
-    { nome: "princesas", imagem: categoryIcon },
-    { nome: "todos", imagem: categoryIcon }
+    { nome: "Adulto", imagem: categoryIcon },
+    { nome: "Meninas", imagem: categoryIcon },
+    { nome: "Meninos", imagem: categoryIcon },
+    { nome: "Heróis", imagem: categoryIcon },
+    { nome: "Jardim", imagem: categoryIcon },
+    { nome: "Princesas", imagem: categoryIcon },
+    { nome: "Ver todos", imagem: categoryIcon }
 ];
 
 const HomePage = () => {
@@ -38,18 +39,7 @@ const HomePage = () => {
                 <TbCategoryFilled className='category-icon' />
                 <p>Categorias</p>
             </div>
-            <div className="category-card">
-                {categorias.map((categoria) => (
-                    <button
-                        key={categoria}
-                        className="category-button"
-                        onClick={() => navigate(`/categoria/${categoria}`)}
-                    >
-                        <img src={categoria.imagem} alt={categoria.nome} className="category-image" />
-                        {categoria.nome}
-                    </button>
-                ))}
-            </div>
+            <CategoryCard categorias={categorias} />
         </div>
     );
 };

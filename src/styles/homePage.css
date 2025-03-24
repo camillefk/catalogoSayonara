@@ -106,45 +106,13 @@
       font-weight: bold;
       justify-content: flex-start;
       align-self: flex-start;
+      margin-top: 10px;
     }
 
     .category-icon {
       color: #e2c100;
       font-size: 1.5rem;
     }
-
-    .category-card {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: flex-start;
-      padding: 10px;
-  }
-  
-  .category-button {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100px;
-      height: 100px;
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.2s;
-  }
-  
-  .category-button:hover {
-      transform: scale(1.05);
-  }
-  
-  .category-image {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
-      margin-bottom: 5px;
-  }
   
   }
 
