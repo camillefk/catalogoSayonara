@@ -5,6 +5,8 @@ import SearchBar from '../components/searchBar/searchBar';
 import WelcomeCard from '../components/welcomeCard/welcomeCard';
 import VerseSection from '../components/verseSection/verseSection';
 import CategoryCard from '../components/categoryCard/categoryCard';
+import newIcon from '../assets/new-icon.png';
+
 import categoryIcon from '../assets/category-icon.png';
 import '../styles/homePage.css';
 
@@ -40,6 +42,10 @@ const HomePage = () => {
                 <p>Categorias</p>
             </div>
             <CategoryCard categorias={categorias} />
+            <div className="new-section">
+                <img src="{newIcon}" alt="Novidades" className="new-icon" />
+                <p className="new-title">New</p>
+            </div>
         </div>
     );
 };
