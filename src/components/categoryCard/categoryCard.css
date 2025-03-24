@@ -1,0 +1,34 @@
+.category-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 60px;
+    background-color: #eeedeb;
+    border-radius: 30px;
+    width: 95%;
+}
+
+.category-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    background-color: #eeedeb;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.category-button:hover {
+    transform: scale(1.05);
+}
+
+.category-image {
+    width: 60px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
