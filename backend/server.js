@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const produtoRoutes = require('./routes/routes');
 const verseRoutes = require('./routes/verseRoutes');
+const auth = require('./routes/auth');
 
 dotenv.config(); //para carregar as variaveis do arquivo .env
 
@@ -20,6 +21,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use('/api', produtoRoutes); //faz as rotas ficarem acessíveis em /api/produtos, etc (?)
 app.use('/api/verses', verseRoutes); //rota para versículo
+app.use('/api', auth);
 
 app.get('/', (req, res) => {
     res.send('Backend está funcionando!');

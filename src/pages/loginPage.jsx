@@ -31,7 +31,7 @@ const LoginPage = () => {
         <h2>Login</h2>
         <form onSubmit={handleLogin}>
           <input
-          type='user'
+          type='text'
           placeholder='Usuário'
           value={user}
           onChange={(e) => setUser(e.target.value)}
@@ -40,8 +40,8 @@ const LoginPage = () => {
           <input
           type="password"
           placeholder="Senha"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
           />
           {erro && <p className='erro'>{erro}</p>}

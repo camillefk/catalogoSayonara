@@ -2,6 +2,7 @@ const express = require('express');
 const Produto = require('../models/Produto');
 const router = express.Router();
 
+
 //rota para listar produtos por categoria
 router.get("/produtos", async (req, res) => {
   try {

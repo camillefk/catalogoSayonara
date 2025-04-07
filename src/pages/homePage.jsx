@@ -40,7 +40,7 @@ const novosProdutos = [
     nome: 'Bolo Adulto',
     preco: 180
   }
-  // Adicione mais produtos conforme necessário
+  
 ];
 
 const HomePage = () => {
