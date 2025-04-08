@@ -60,8 +60,7 @@
 }
 
 
-  
-  /* Responsividade */
+
   @media (max-width: 768px) {
     .search-bar-container {
         display: flex;

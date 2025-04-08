@@ -75,3 +75,16 @@
     font-family: 'Poppins', sans-serif;;
 
 }
+
+@media (max-width: 768px) {
+
+.login-container {
+    padding: 1.5rem;
+    height: auto;
+    width: auto;
+    margin: 2rem 1rem;
+}
+
+
+
+}
