@@ -50,4 +50,28 @@
     padding: 0.5rem 0;
     border-bottom: 1px solid #ccc;
   }
+
+  .botoes-acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+  }
+  
+  .botao-editar,
+  .botao-excluir {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .botao-editar {
+    background-color: #87d8d8;
+    color: #333e54;
+  }
+  
+  .botao-excluir {
+    background-color: #e57373;
+    color: white;
+  }
   

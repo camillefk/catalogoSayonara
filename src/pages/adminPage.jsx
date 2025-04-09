@@ -85,7 +85,19 @@ const AdminPage = () => {
                 <ul className="produtos-lista">
                     {produtos.map((produto) => (
                         <li className="produto-item" key={produto._id}>
-                            {produto.nome} - {produto.categoria}
+                            <span>{produto.nome} - {produto.categoria}</span>
+                            <div className="botoes-acoes">
+                                <button
+                                    className="botao-editar"
+                                    onClick={() => console.log('Editar', produto._id)}
+                                >Editar
+                                </button>
+                                <button
+                                    className="botao-excluir"
+                                    onClick={() => console.log('Excluir', produto._id)}
+                                >Excluir
+                                </button>
+                            </div>
                         </li>
                     ))}
                 </ul>
