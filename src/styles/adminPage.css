@@ -1,0 +1,53 @@
+.admin-container {
+    padding: 2rem;
+  }
+  
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logout-button {
+    background-color: #e2c100;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .versiculo-section,
+  .produtos-section {
+    margin-top: 2rem;
+  }
+  
+  .versiculo-input {
+    display: block;
+    width: 100%;
+    min-height: 80px;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .update-button {
+    background-color: #7ef1bd;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .produtos-lista {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .produto-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
