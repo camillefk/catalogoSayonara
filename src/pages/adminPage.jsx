@@ -8,6 +8,18 @@ const AdminPage = () => {
     const [versiculo, serVersiculo] = useState('');
     const [novoVersiculo, setNovoVersiculo] = useState('');
     const [token, setToken] = useState(localStorage.getItem('token'));
+    const [produtoEditando, setProdutoEditando] = useState(null);
+    const [mostrarModal, setMostrarModal] = useState(false);
+
+    const [mostrarModalAdicionar, setMostrarModalAdicionar] = useState(false);
+    const [novoProduto, setNovoProduto] = useState({
+        nome: '',
+        categoria: '',
+        preco: '',
+        imagem: '',
+        altura: '',
+        diametro: ''
+    });
 
     useEffect(() => {
         if (!token) {
@@ -30,7 +42,7 @@ const AdminPage = () => {
 
     const buscarVersiculo = async () => {
         try {
-            const response = await ('http://localhost:5000/api/versiculo');
+            const response = await fetch('http://localhost:5000/api/versiculo');
             const data = await response.json();
             setNovoVersiculo(data.text || 'Nenhum versículo disponível');
         } catch (err) {
@@ -61,6 +73,91 @@ const AdminPage = () => {
         navigate('/');
     };
 
+    const abrirModalEdicao = (produto) => {
+        setProdutoEditando(produto);
+        setMostrarModal(true);
+    };
+
+    const fecharModal = () => {
+        setMostrarModal(false);
+        setProdutoEditando(null);
+    };
+
+    const handleEditarProduto = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`http://localhost:5000/api/produtos/${produtoEditando._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ${token}'
+                },
+                body: JSON.stringify(produtoEditando),
+            });
+
+            if (response.ok) {
+                alert('Produto atualizado com sucesso!');
+                fecharModal();
+                buscarProdutos();
+            } else {
+                alert('Erro ao atualizar produto');
+            }
+        } catch (err) {
+            console.error('Erro ao editar produto:', err);
+        }
+    };
+
+    const handleAdicionarProduto = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:5000/api/produtos', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify(novoProduto),
+            });
+
+            if (response.ok) {
+                alert('Produto adicionado com sucesso!');
+                setMostrarModalAdicionar(false);
+                setNovoProduto({
+                    nome: '',
+                    categoria: '',
+                    preco: '',
+                    imagem: '',
+                    altura: '',
+                    diametro: ''
+                });
+                buscarProdutos();
+            } else {
+                alert('Erro ao adicionar produto');
+            }
+        } catch (err) {
+            console.error('Erro ao adicionar produto:', err);
+        }
+    };
+
+    const handleExcluirProduto = async (id) => {
+        if (!window.confirm('Tem certeza que deseja excluir este bolo?')) return;
+
+        try {
+            await fetch(`http://localhost:5000/api/produtos/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            setProdutos(produtos.filter((produto) => produto._id !== id));
+            alert('Produto excluído com sucesso!');
+        } catch (err) {
+            console.error('Erro ao excluir produto:', err);
+            alert('Erro ao excluir produto');
+        }
+    };
+
     return (
         <div className="admin-container">
             <header className="admin-header">
@@ -82,19 +179,20 @@ const AdminPage = () => {
 
             <section className="produtos-section">
                 <h2>Produtos Cadastrados</h2>
+                <button className="botao-adicionar" onClick={() => setMostrarModalAdicionar(true)}>Adicionar Novo Bolo</button>
                 <ul className="produtos-lista">
                     {produtos.map((produto) => (
                         <li className="produto-item" key={produto._id}>
-                            <span>{produto.nome} - {produto.categoria}</span>
+                            {produto.nome} - {produto.categoria}
                             <div className="botoes-acoes">
                                 <button
                                     className="botao-editar"
-                                    onClick={() => console.log('Editar', produto._id)}
+                                    onClick={() => abrirModalEdicao(produto)}
                                 >Editar
                                 </button>
                                 <button
                                     className="botao-excluir"
-                                    onClick={() => console.log('Excluir', produto._id)}
+                                    onClick={() => handleExcluirProduto(produto._id)}
                                 >Excluir
                                 </button>
                             </div>
@@ -102,6 +200,157 @@ const AdminPage = () => {
                     ))}
                 </ul>
             </section>
+
+            {mostrarModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h3>Editar Produto</h3>
+                        <form onSubmit={handleEditarProduto}>
+                            <input
+                            type="text"
+                            placeholder="Nome do bolo"
+                            value={produtoEditando?.nome || ''}
+                            onChange={(e) => setProdutoEditando({ ...produtoEditando, nome: e.target.value })}
+                            />
+                            <select
+                            value={produtoEditando?.categoria || ''}
+                            onChange={(e) => setProdutoEditando({ ...produtoEditando, categoria: e.target.value })}
+                            >
+                                <option value="">Selecione uma categoria</option>
+                                <option value="Jardim">Jardim</option>
+                                <option value="Princesas">Princesas</option>
+                                <option value="Fazendinha">Fazendinha</option>
+                                <option value="15anos">15 anos</option>
+                                <option value="Personagens">Personagens</option>
+                                <option value="Disney">Disney</option>
+                                <option value="Herois">Hérois</option>
+                                <option value="FundoDoMar">Fundo do Mar</option>
+                                <option value="Carros">Carros</option>
+                                <option value="Adulto">Adulto</option>
+                                <option value="Casamento">Casamento</option>
+                                <option value="Sereia">Sereia</option>
+                                <option value="Futbol">Futbol</option>
+                                <option value="Barbie">Barbie</option>
+                                <option value="Circo">Circo</option>
+                                <option value="Safari">Safari</option>
+                                <option value="Natal">Natal</option>
+                                <option value="Abc">ABC</option>
+                                <option value="ChaRevelacao">Chá Revelação</option>
+                                <option value="Bosque">Bosque</option>
+                                <option value="Meninos">Meninos</option>
+                                <option value="Meninas">Meninas</option>
+                                <option value="Diversos">Diversos</option>
+
+
+                            </select>
+                            <input
+                                type="number"
+                                placeholder="Preço"
+                                value={produtoEditando?.preco || ''}
+                                onChange={(e) => setProdutoEditando({ ...produtoEditando, preco: e.target.value })}
+                            />
+                            <input
+                                type="text"
+                                placeholder="URL da Imagem"
+                                value={produtoEditando?.imagem || ''}
+                                onChange={(e) => setProdutoEditando({ ...produtoEditando, imagem: e.target.value })}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Altura"
+                                value={produtoEditando?.altura || ''}
+                                onChange={(e) => setProdutoEditando({ ...produtoEditando, altura: e.target.value })}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Diâmetro"
+                                value={produtoEditando?.diametro || ''}
+                                onChange={(e) => setProdutoEditando({ ...produtoEditando, diametro: e.target.value })}
+                            />
+                            <div className="modal-botoes">
+                                <button type="submit">Salvar</button>
+                                <button type="button" onClick={fecharModal}>Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {mostrarModalAdicionar && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h3>Adicionar Bolo</h3>
+                        <form onSubmit={handleAdicionarProduto}>
+                            <input
+                                type="text"
+                                placeholder="Nome do Bolo"
+                                value={novoProduto.nome}
+                                onChange={(e) => setNovoProduto({ ...novoProduto, nome: e.target.value })}
+                                required
+                            />
+                            <select
+                                value={novoProduto.categoria}
+                                onChange={(e) => setNovoProduto({ ...novoProduto, categoria: e.target.value })}
+                                required
+                            >
+                                <option value="">Selecione uma categoria</option>
+                                <option value="Jardim">Jardim</option>
+                                <option value="Princesas">Princesas</option>
+                                <option value="Fazendinha">Fazendinha</option>
+                                <option value="15 anos">15 anos</option>
+                                <option value="Personagens">Personagens</option>
+                                <option value="Disney">Disney</option>
+                                <option value="Herois">Hérois</option>
+                                <option value="FundoDoMar">Fundo do Mar</option>
+                                <option value="Carros">Carros</option>
+                                <option value="Adulto">Adulto</option>
+                                <option value="Casamento">Casamento</option>
+                                <option value="Sereia">Sereia</option>
+                                <option value="Futbol">Futbol</option>
+                                <option value="Barbie">Barbie</option>
+                                <option value="Circo">Circo</option>
+                                <option value="Safari">Safari</option>
+                                <option value="Natal">Natal</option>
+                                <option value="ABC">ABC</option>
+                                <option value="Cha Revelacao">Chá Revelação</option>
+                                <option value="Bosque">Bosque</option>
+                                <option value="Meninos">Meninos</option>
+                                <option value="Meninas">Meninas</option>
+                                <option value="Diversos">Diversos</option>
+                            </select>
+                            <input
+                                type="number"
+                                placeholder="Preço"
+                                value={novoProduto.preco}
+                                onChange={(e) => setNovoProduto({ ...novoProduto, preco: e.target.value})}
+                                required
+                            />
+                            <input
+                                type="text"
+                                placeholder="URL da Imagem"
+                                value={novoProduto.imagem}
+                                onChange={(e) => setNovoProduto({ ...novoProduto, imagem: e.target.value })}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Altura"
+                                value={novoProduto.altura}
+                                onChange={(e) => setNovoProduto({ ...novoProduto, altura: e.target.value })}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Diâmetro"
+                                value={novoProduto.diametro}
+                                onChange={(e) => setNovoProduto({ ...novoProduto, diametro: e.target.value })}
+                            />
+                            <div className="modal-botoes">
+                                <button type="submit">Adicionar</button>
+                                <button type="button" onClick={() => setMostrarModalAdicionar(false)}>Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
         
 
 

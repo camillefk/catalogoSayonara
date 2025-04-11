@@ -33,8 +33,8 @@ router.get('/produtos', async (req, res) => {
 
 //rota para adicionar um produto
 router.post('/produtos', async (req, res) => {
-  const { nome, categoria, preco, imagem, altura, diametro, indisponibilidade } = req.body;
-  const novoProduto = new Produto({ nome, categoria, preco, imagem, altura, diametro, indisponibilidade });
+  const { nome, categoria, preco, imagem, altura, diametro } = req.body;
+  const novoProduto = new Produto({ nome, categoria, preco, imagem, altura, diametro });
 
   try {
     await novoProduto.save();
@@ -61,6 +61,32 @@ router.delete('/produtos/:id', async (req, res) => {
     res.send('Produto excluído');
   } catch (err) {
     res.status(400).send('Erro ao excluir produto');
+  }
+});
+
+//rota para adicionar uma nova data de indisponibilidade a um produto
+router.patch('produtos/:id/indisponibilidade', async (req, res) => {
+  const { data } = req.body;
+
+  if (!data) {
+    return res.status(400).json({ message: "A data é obrigatória." });
+  }
+
+  try {
+    const produto = await Produto.findById(req.params.id);
+    if (!produto) {
+      return res.status(404).json({ message: "Produto não encontrado." });
+    }
+
+    //para evitar duplicidade
+    if (!produto.indisponibilidade.includes(data)) {
+      produto.indisponibilidade.push(data);
+      await produto.save();
+    }
+
+    res.json(produto);
+  } catch (err) {
+    res.status(500).json({ message: "Erro ao adicionar data de indisponibilidade", error: err.message });
   }
 });
 
