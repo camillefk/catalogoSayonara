@@ -1,6 +1,22 @@
 const express = require('express');
 const Produto = require('../models/Produto');
 const router = express.Router();
+const multer = require('multer');
+const path = require('path');
+
+//configuracao do armazenamento
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); //pasta onde os arquivos vao ser salvos
+  },
+  filename: function (req, file, cb) {
+    const ext = path.extname(file.originalname);
+    cb(null, Date.now() + ext); //nome único??
+
+  }
+});
+
+const upload = multer({ storage });
 
 
 //rota para listar produtos por categoria
@@ -32,18 +48,19 @@ router.get('/produtos', async (req, res) => {
 });
 
 //rota para adicionar um produto
-router.post('/produtos', async (req, res) => {
-  const { nome, categoria, preco, imagem, altura, diametro } = req.body;
-  const novoProduto = new Produto({ nome, categoria, preco, imagem, altura, diametro });
-
+router.post('/produtos', upload.single('imagem'), async (req, res) => {
   try {
+    const { nome, categoria, preco, altura, diametro } = req.body;
+    const imagem = req.file ? `/uploads/${req.file.filename}` : '';
+
+    const novoProduto = new Produto({ nome, categoria, preco, imagem, altura, diametro });
+
     await novoProduto.save();
     res.status(201).json(novoProduto);
   } catch (err) {
     res.status(400).send('Erro ao adicionar produto');
   }
 });
-
 //rota para editar um produto
 router.put('/produtos/:id', async (req, res) => {
   try {
@@ -65,7 +82,7 @@ router.delete('/produtos/:id', async (req, res) => {
 });
 
 //rota para adicionar uma nova data de indisponibilidade a um produto
-router.patch('produtos/:id/indisponibilidade', async (req, res) => {
+router.patch('/produtos/:id/indisponibilidade', async (req, res) => {
   const { data } = req.body;
 
   if (!data) {

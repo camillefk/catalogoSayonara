@@ -110,14 +110,21 @@ const AdminPage = () => {
     const handleAdicionarProduto = async (e) => {
         e.preventDefault();
         try {
+            const formData = newData();
+            formData.append('nome', novoProduto.nome);
+            formData.append('categoria', novoProduto.categoria);
+            formData.append('preco', novoProduto.preco);
+            formData.append('altura', novoProduto.altura);
+            formData.append('diametro', novoProduto.diametro);
+            formData.append('imagem', novoProduto.imagem);
+
             const response = await fetch('http://localhost:5000/api/produtos', {
                 method: 'POST',
                 headers: {
-                  'Content-Type': 'application/json',
                   Authorization: `Bearer ${token}`
                 },
-                body: JSON.stringify(novoProduto),
-            });
+                body: formData,
+              });
 
             if (response.ok) {
                 alert('Produto adicionado com sucesso!');
@@ -326,10 +333,9 @@ const AdminPage = () => {
                                 required
                             />
                             <input
-                                type="text"
-                                placeholder="URL da Imagem"
-                                value={novoProduto.imagem}
-                                onChange={(e) => setNovoProduto({ ...novoProduto, imagem: e.target.value })}
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => setNovoProduto({ ...novoProduto, imagem: e.target.files[0] })}
                             />
                             <input
                                 type="text"
