@@ -86,15 +86,24 @@ const AdminPage = () => {
     const handleEditarProduto = async (e) => {
         e.preventDefault();
         try {
+            const formData = new FormData();
+            formData.append('nome', produtoEditando.nome);
+            formData.append('categoria', produtoEditando.categoria);
+            formData.append('preco', produtoEditando.preco);
+            formData.append('altura', produtoEditando.altura);
+            formData.append('diametro', produtoEditando.diametro);
+            if (produtoEditando.imagem instanceof File) {
+                formData.append('imagem', produtoEditando.imagem);
+            }
+
             const response = await fetch(`http://localhost:5000/api/produtos/${produtoEditando._id}`, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: 'Bearer ${token}'
+                    Authorization: `Bearer ${token}`,
                 },
-                body: JSON.stringify(produtoEditando),
+                body: formData,
             });
-
+    
             if (response.ok) {
                 alert('Produto atualizado com sucesso!');
                 fecharModal();
@@ -110,13 +119,15 @@ const AdminPage = () => {
     const handleAdicionarProduto = async (e) => {
         e.preventDefault();
         try {
-            const formData = newData();
+            const formData = new FormData();
             formData.append('nome', novoProduto.nome);
             formData.append('categoria', novoProduto.categoria);
             formData.append('preco', novoProduto.preco);
             formData.append('altura', novoProduto.altura);
             formData.append('diametro', novoProduto.diametro);
-            formData.append('imagem', novoProduto.imagem);
+            if (novoProduto.imagem) {
+                formData.append('imagem', novoProduto.imagem);
+            }
 
             const response = await fetch('http://localhost:5000/api/produtos', {
                 method: 'POST',
@@ -257,10 +268,9 @@ const AdminPage = () => {
                                 onChange={(e) => setProdutoEditando({ ...produtoEditando, preco: e.target.value })}
                             />
                             <input
-                                type="text"
-                                placeholder="URL da Imagem"
-                                value={produtoEditando?.imagem || ''}
-                                onChange={(e) => setProdutoEditando({ ...produtoEditando, imagem: e.target.value })}
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => setProdutoEditando({ ...produtoEditando, imagem: e.target.files[0] })}
                             />
                             <input
                                 type="text"
