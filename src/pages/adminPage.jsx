@@ -42,7 +42,7 @@ const AdminPage = () => {
 
     const buscarVersiculo = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/versiculo');
+            const response = await fetch('http://localhost:5000/api/verses');
             const data = await response.json();
             setNovoVersiculo(data.text || 'Nenhum versículo disponível');
         } catch (err) {
@@ -52,7 +52,7 @@ const AdminPage = () => {
 
     const atualizarVersiculo = async () => {
         try {
-            await fetch('http://localhost:5000/api/versiculo', {
+            await fetch('http://localhost:5000/api/verses', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -247,7 +247,7 @@ const AdminPage = () => {
                                 <option value="Adulto">Adulto</option>
                                 <option value="Casamento">Casamento</option>
                                 <option value="Sereia">Sereia</option>
-                                <option value="Futbol">Futbol</option>
+                                <option value="Futebol">Futebol</option>
                                 <option value="Barbie">Barbie</option>
                                 <option value="Circo">Circo</option>
                                 <option value="Safari">Safari</option>
@@ -323,7 +323,7 @@ const AdminPage = () => {
                                 <option value="Adulto">Adulto</option>
                                 <option value="Casamento">Casamento</option>
                                 <option value="Sereia">Sereia</option>
-                                <option value="Futbol">Futbol</option>
+                                <option value="Futebol">Futebol</option>
                                 <option value="Barbie">Barbie</option>
                                 <option value="Circo">Circo</option>
                                 <option value="Safari">Safari</option>
