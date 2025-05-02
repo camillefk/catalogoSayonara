@@ -23,27 +23,12 @@ const upload = multer({ storage });
 router.get("/produtos", async (req, res) => {
   try {
     const { categoria } = req.query;
-    let produtos;
-
-    if (categoria && categoria !== "todos") {
-      produtos = await Produto.find({ categoria });
-    } else {
-      produtos = await Produto.find();
-    }
-
+    const produtos = categoria && categoria !== "todos"
+      ? await Produto.find({ categoria })
+      : await Produto.find();
     res.json(produtos);
   } catch (error) {
     res.status(500).json({ message: "Erro ao buscar produtos", error });
-  }
-});
-
-//rota para listar todos os produtos
-router.get('/produtos', async (req, res) => {
-  try {
-    const produtos = await Produto.find();
-    res.json(produtos);
-  } catch (err) {
-    res.status(500).send('Erro ao buscar produtos');
   }
 });
 
@@ -58,7 +43,7 @@ router.post('/produtos', upload.single('imagem'), async (req, res) => {
     await novoProduto.save();
     res.status(201).json(novoProduto);
   } catch (err) {
-    res.status(400).send('Erro ao adicionar produto');
+    res.status(500).json({ message: 'Erro ao adicionar produto', error: err });
   }
 });
 //rota para editar um produto

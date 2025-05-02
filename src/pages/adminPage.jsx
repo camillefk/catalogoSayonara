@@ -5,7 +5,7 @@ import '../styles/adminPage.css';
 const AdminPage = () => {
     const navigate = useNavigate();
     const [produtos, setProdutos] = useState([]);
-    const [versiculo, serVersiculo] = useState('');
+    const [versiculo, setVersiculo] = useState('');
     const [novoVersiculo, setNovoVersiculo] = useState('');
     const [token, setToken] = useState(localStorage.getItem('token'));
     const [produtoEditando, setProdutoEditando] = useState(null);
@@ -180,7 +180,7 @@ const AdminPage = () => {
         <div className="admin-container">
             <header className="admin-header">
                 <h1>Painel Administrativo</h1>
-                <button className="logout-button">Sair</button>
+                <button className="logout-button" onClick={logout}>Sair</button>
             </header>
 
             <section className="versiculo-section">
@@ -238,11 +238,11 @@ const AdminPage = () => {
                                 <option value="Jardim">Jardim</option>
                                 <option value="Princesas">Princesas</option>
                                 <option value="Fazendinha">Fazendinha</option>
-                                <option value="15anos">15 anos</option>
+                                <option value="15 anos">15 anos</option>
                                 <option value="Personagens">Personagens</option>
                                 <option value="Disney">Disney</option>
-                                <option value="Herois">Hérois</option>
-                                <option value="FundoDoMar">Fundo do Mar</option>
+                                <option value="Heróis">Heróis</option>
+                                <option value="Fundo do Mar">Fundo do Mar</option>
                                 <option value="Carros">Carros</option>
                                 <option value="Adulto">Adulto</option>
                                 <option value="Casamento">Casamento</option>
@@ -252,8 +252,8 @@ const AdminPage = () => {
                                 <option value="Circo">Circo</option>
                                 <option value="Safari">Safari</option>
                                 <option value="Natal">Natal</option>
-                                <option value="Abc">ABC</option>
-                                <option value="ChaRevelacao">Chá Revelação</option>
+                                <option value="ABC">ABC</option>
+                                <option value="Chá Revelacao">Chá Revelação</option>
                                 <option value="Bosque">Bosque</option>
                                 <option value="Meninos">Meninos</option>
                                 <option value="Meninas">Meninas</option>
@@ -317,8 +317,8 @@ const AdminPage = () => {
                                 <option value="15 anos">15 anos</option>
                                 <option value="Personagens">Personagens</option>
                                 <option value="Disney">Disney</option>
-                                <option value="Herois">Hérois</option>
-                                <option value="FundoDoMar">Fundo do Mar</option>
+                                <option value="Heróis">Heróis</option>
+                                <option value="Fundo do Mar">Fundo do Mar</option>
                                 <option value="Carros">Carros</option>
                                 <option value="Adulto">Adulto</option>
                                 <option value="Casamento">Casamento</option>
@@ -329,7 +329,7 @@ const AdminPage = () => {
                                 <option value="Safari">Safari</option>
                                 <option value="Natal">Natal</option>
                                 <option value="ABC">ABC</option>
-                                <option value="Cha Revelacao">Chá Revelação</option>
+                                <option value="Chá Revelacao">Chá Revelação</option>
                                 <option value="Bosque">Bosque</option>
                                 <option value="Meninos">Meninos</option>
                                 <option value="Meninas">Meninas</option>

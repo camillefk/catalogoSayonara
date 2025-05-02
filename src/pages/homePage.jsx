@@ -24,27 +24,24 @@ const categorias = [
   { nome: 'Ver todos', imagem: categoryIcon }
 ];
 
-const novosProdutos = [
-  {
-    imagem: 'https://via.placeholder.com/200x140',
-    nome: 'Bolo Casamento',
-    preco: 150
-  },
-  {
-    imagem: 'https://via.placeholder.com/200x140',
-    nome: 'Bolo Infantil',
-    preco: 120
-  },
-  {
-    imagem: 'https://via.placeholder.com/200x140',
-    nome: 'Bolo Adulto',
-    preco: 180
-  }
-  
-];
 
 const HomePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [novosProdutos, setNovosProdutos] = useState([]);
+
+  useEffect(() => {
+    const buscarNovosProdutos = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/produtos');
+        const data = await response.json();
+        setNovosProdutos(data);
+      } catch (error) {
+        console.error('Erro ao buscar produtos:', error);
+      }
+    };
+
+    buscarNovosProdutos();
+  }, []);
   const navigate = useNavigate();
 
   // Função para avançar o carrossel
