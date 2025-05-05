@@ -22,6 +22,7 @@ const PORT = process.env.PORT || 5000;
 app.use('/api', produtoRoutes); //faz as rotas ficarem acessíveis em /api/produtos, etc (?)
 app.use('/api/verses', verseRoutes); //rota para versículo
 app.use('/api', auth);
+app.use('/uploads', express.static('uploads'));
 
 app.get('/', (req, res) => {
     res.send('Backend está funcionando!');
@@ -31,7 +32,7 @@ app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
 
-app.use('/uploads', express.static('uploads'));
+
 
 
 

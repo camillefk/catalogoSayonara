@@ -11,8 +11,8 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const ext = path.extname(file.originalname);
-    cb(null, Date.now() + ext); //nome único??
-
+    const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1e9)}${ext}`;
+    cb(null, uniqueName);
   }
 });
 
@@ -44,7 +44,7 @@ router.post('/produtos', upload.single('imagem'), async (req, res) => {
     res.status(201).json(novoProduto);
   } catch (err) {
     res.status(500).json({ message: 'Erro ao adicionar produto', error: err });
-  }
+  }                             
 });
 //rota para editar um produto
 router.put('/produtos/:id', async (req, res) => {

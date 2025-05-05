@@ -202,17 +202,14 @@ const AdminPage = () => {
                     {produtos.map((produto) => (
                         <li className="produto-item" key={produto._id}>
                             {produto.nome} - {produto.categoria}
+                            <div className="produto-card">
+                            <img src={`http://localhost:5000${produto.imagem}`} alt={produto.nome} className="imagem-produto" />
+                            <h3 className="produto-nome">{produto.nome}</h3>
+                            <p className="produto-preco">R$ {parseFloat(produto.preco).toFixed(2)}</p>
                             <div className="botoes-acoes">
-                                <button
-                                    className="botao-editar"
-                                    onClick={() => abrirModalEdicao(produto)}
-                                >Editar
-                                </button>
-                                <button
-                                    className="botao-excluir"
-                                    onClick={() => handleExcluirProduto(produto._id)}
-                                >Excluir
-                                </button>
+                                <button className="botao-editar" onClick={() => abrirModalEdicao(produto)}>Editar</button>
+                                <button className="botao-excluir" onClick={() => handleExcluirProduto(produto._id)}>Excluir</button>
+                            </div>
                             </div>
                         </li>
                     ))}
