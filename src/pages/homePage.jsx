@@ -8,21 +8,10 @@ import VerseSection from '../components/verseSection/verseSection';
 import CategoryCard from '../components/categoryCard/categoryCard';
 import NewCard from '../components/newCard/newCard';
 import newIcon from '../assets/new-icon.png';
+import categorias from '../utils/categorias';
 import categoryIcon from '../assets/category-icon.png';
 import '../styles/homePage.css';
 import { useState, useEffect } from 'react';
-
-const categorias = [
-  { nome: 'Casamento', imagem: categoryIcon },
-  { nome: '15 anos', imagem: categoryIcon },
-  { nome: 'Adulto', imagem: categoryIcon },
-  { nome: 'Meninas', imagem: categoryIcon },
-  { nome: 'Meninos', imagem: categoryIcon },
-  { nome: 'Heróis', imagem: categoryIcon },
-  { nome: 'Jardim', imagem: categoryIcon },
-  { nome: 'Princesas', imagem: categoryIcon },
-  { nome: 'Ver todos', imagem: categoryIcon }
-];
 
 
 const HomePage = () => {

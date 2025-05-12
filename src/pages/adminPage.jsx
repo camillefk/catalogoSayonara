@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { nomeDasCategorias } from '../utils/categorias';
 import '../styles/adminPage.css';
 
 const AdminPage = () => {
@@ -232,31 +233,9 @@ const AdminPage = () => {
                             onChange={(e) => setProdutoEditando({ ...produtoEditando, categoria: e.target.value })}
                             >
                                 <option value="">Selecione uma categoria</option>
-                                <option value="Jardim">Jardim</option>
-                                <option value="Princesas">Princesas</option>
-                                <option value="Fazendinha">Fazendinha</option>
-                                <option value="15 anos">15 anos</option>
-                                <option value="Personagens">Personagens</option>
-                                <option value="Disney">Disney</option>
-                                <option value="Heróis">Heróis</option>
-                                <option value="Fundo do Mar">Fundo do Mar</option>
-                                <option value="Carros">Carros</option>
-                                <option value="Adulto">Adulto</option>
-                                <option value="Casamento">Casamento</option>
-                                <option value="Sereia">Sereia</option>
-                                <option value="Futebol">Futebol</option>
-                                <option value="Barbie">Barbie</option>
-                                <option value="Circo">Circo</option>
-                                <option value="Safari">Safari</option>
-                                <option value="Natal">Natal</option>
-                                <option value="ABC">ABC</option>
-                                <option value="Chá Revelacao">Chá Revelação</option>
-                                <option value="Bosque">Bosque</option>
-                                <option value="Meninos">Meninos</option>
-                                <option value="Meninas">Meninas</option>
-                                <option value="Diversos">Diversos</option>
-
-
+                                {nomesDasCategorias.map((categoria, index) => (
+                                    <option key={index} value={categoria}>{categoria}</option>
+                                ))}
                             </select>
                             <input
                                 type="number"
@@ -308,29 +287,9 @@ const AdminPage = () => {
                                 required
                             >
                                 <option value="">Selecione uma categoria</option>
-                                <option value="Jardim">Jardim</option>
-                                <option value="Princesas">Princesas</option>
-                                <option value="Fazendinha">Fazendinha</option>
-                                <option value="15 anos">15 anos</option>
-                                <option value="Personagens">Personagens</option>
-                                <option value="Disney">Disney</option>
-                                <option value="Heróis">Heróis</option>
-                                <option value="Fundo do Mar">Fundo do Mar</option>
-                                <option value="Carros">Carros</option>
-                                <option value="Adulto">Adulto</option>
-                                <option value="Casamento">Casamento</option>
-                                <option value="Sereia">Sereia</option>
-                                <option value="Futebol">Futebol</option>
-                                <option value="Barbie">Barbie</option>
-                                <option value="Circo">Circo</option>
-                                <option value="Safari">Safari</option>
-                                <option value="Natal">Natal</option>
-                                <option value="ABC">ABC</option>
-                                <option value="Chá Revelacao">Chá Revelação</option>
-                                <option value="Bosque">Bosque</option>
-                                <option value="Meninos">Meninos</option>
-                                <option value="Meninas">Meninas</option>
-                                <option value="Diversos">Diversos</option>
+                                {nomesDasCategorias.map((categoria, index) => (
+                                    <option key={index} value={categoria}>{categoria}</option>
+                                ))}
                             </select>
                             <input
                                 type="number"

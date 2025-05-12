@@ -10,7 +10,8 @@ const CategoryCard = ({ categorias}) => {
                 <button
                     key={categoria.nome}
                     className='category-button'
-                    onClick={() => navigate(`/categoria/${categoria.nome.toLowerCase()}`)}
+                    onClick={() => navigate(`/categoria/${encodeURIComponent(categoria.nome)}`)}
+
                 >
                     <img src={categoria.imagem} alt={categoria.nome} className="category-image" />
                     {categoria.nome}

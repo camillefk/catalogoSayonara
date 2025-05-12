@@ -2,13 +2,16 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 const CategoryPage = () => {
-    const { categoria } = useParams(); // Pegamos a categoria da URL
+    const { categoria } = useParams();
+    const categoriaDecodificada = decodeURIComponent(categoria);
+
     const [produtos, setProdutos] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setLoading(true);
-        fetch(`http://localhost:5000/api/produtos?categoria=${categoria}`)
+        fetch(`http://localhost:5000/api/produtos?categoria=${categoriaDecodificada}`)
+
             .then(response => response.json())
             .then(data => {
                 setProdutos(data);
