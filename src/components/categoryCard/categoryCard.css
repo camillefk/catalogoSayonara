@@ -1,13 +1,19 @@
-.category-card {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+.category-card-wrapper {
+    position: relative;
+    width: 95%;
     background-color: #eeedeb;
     border-radius: 30px;
-    width: 95%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+
+.category-card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    justify-content: center;
+    padding: 0;
 }
 
 .category-button {
@@ -28,7 +34,32 @@
 }
 
 .category-image {
-    width: 60px;
+    width: 50px;
     object-fit: contain;
     margin-bottom: 5px;
+}
+
+.navigation-arrows {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.arrow {
+    background-color: #e2c100;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.arrow:hover {
+    background-color: #87d8d8;
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { nomeDasCategorias } from '../utils/categorias';
+import { nomesDasCategorias } from '../utils/categorias';
 import '../styles/adminPage.css';
 
 const AdminPage = () => {

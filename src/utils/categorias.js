@@ -24,6 +24,7 @@ const categorias = [
   { nome: 'Meninos', imagem: categoryIcon },
   { nome: 'Meninas', imagem: categoryIcon },
   { nome: 'Diversos', imagem: categoryIcon },
+  { nome: 'Todos', imagem: categoryIcon },
 ];
 
 export const nomesDasCategorias = categorias.map(cat => cat.nome);
