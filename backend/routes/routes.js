@@ -22,10 +22,14 @@ const upload = multer({ storage });
 //rota para listar produtos por categoria
 router.get("/produtos", async (req, res) => {
   try {
-    const { categoria } = req.query;
-    const produtos = categoria && categoria !== "todos"
-      ? await Produto.find({ categoria })
-      : await Produto.find();
+    const { categoria, isNew } = req.query;
+    const filtro = {};
+
+    if (categoria && categoria !== 'todos') filtro.categoria = categoria;
+    if (isNew === 'true') filtro.isNew = true;
+
+    const produtos = await Produto.find(filtro);
+
     res.json(produtos);
   } catch (error) {
     res.status(500).json({ message: "Erro ao buscar produtos", error });
@@ -35,10 +39,11 @@ router.get("/produtos", async (req, res) => {
 //rota para adicionar um produto
 router.post('/produtos', upload.single('imagem'), async (req, res) => {
   try {
-    const { nome, categoria, preco, altura, diametro } = req.body;
+    const { nome, categoria, preco, altura, diametro, isNew = false } = req.body;
+
     const imagem = req.file ? `/uploads/${req.file.filename}` : '';
 
-    const novoProduto = new Produto({ nome, categoria, preco, imagem, altura, diametro });
+    const novoProduto = new Produto({ nome, categoria, preco, imagem, altura, diametro, isNew });
 
     await novoProduto.save();
     res.status(201).json(novoProduto);
@@ -47,14 +52,35 @@ router.post('/produtos', upload.single('imagem'), async (req, res) => {
   }                             
 });
 //rota para editar um produto
-router.put('/produtos/:id', async (req, res) => {
-  try {
-    const produto = await Produto.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(produto);
-  } catch (err) {
-    res.status(400).send('Erro ao editar produto');
+router.put(
+  '/produtos/:id',
+  upload.single('imagem'),                      
+  async (req, res) => {
+    try {
+      const {
+        nome, categoria, preco, altura, diametro, isNew
+      } = req.body;
+
+      const updateData = {
+        nome, categoria, preco, altura, diametro, isNew
+      };
+
+      // se veio arquivo, atualiza caminho da imagem
+      if (req.file) updateData.imagem = `/uploads/${req.file.filename}`;
+
+      const produto = await Produto.findByIdAndUpdate(
+        req.params.id,
+        updateData,
+        { new: true, runValidators: true }
+      );
+
+      res.json(produto);
+    } catch (err) {
+      res.status(400).json({ message: 'Erro ao editar produto', error: err });
+    }
   }
-});
+);
+
 
 //rota para excluir um produto
 router.delete('/produtos/:id', async (req, res) => {

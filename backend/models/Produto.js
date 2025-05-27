@@ -29,6 +29,10 @@ const produtoSchema = new mongoose.Schema({
         type: [String], //array de datas
         default: [],
     },
+    isNew: {
+        type: Boolean,
+        default: false
+    },
 });
 
 module.exports = mongoose.model(`Produto`, produtoSchema);
