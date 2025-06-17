@@ -13,6 +13,18 @@ const AdminPage = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
 
   const [mostrarModalAdicionar, setMostrarModalAdicionar] = useState(false);
+
+  const [mostrarModalNovidade, setMostrarModalNovidade] = useState(false);
+  const [novoProdutoNovidade, setNovoProdutoNovidade] = useState({
+    nome: "",
+    categoria: "",
+    preco: "",
+    imagem: "",
+    altura: "",
+    diametro: "",
+    mostrarEmNew: true, // sempre true
+  });
+
   const [novoProduto, setNovoProduto] = useState({
     nome: "",
     categoria: "",
@@ -20,7 +32,7 @@ const AdminPage = () => {
     imagem: "",
     altura: "",
     diametro: "",
-    isNew: false,
+    mostrarEmNew: false,
   });
 
   useEffect(() => {
@@ -94,7 +106,7 @@ const AdminPage = () => {
       formData.append("preco", produtoEditando.preco);
       formData.append("altura", produtoEditando.altura);
       formData.append("diametro", produtoEditando.diametro);
-      formData.append('isNew', produtoEditando.isNew);
+      formData.append("mostrarEmNew", produtoEditando.mostrarEmNew);
 
       if (produtoEditando.imagem instanceof File) {
         formData.append("imagem", produtoEditando.imagem);
@@ -132,6 +144,7 @@ const AdminPage = () => {
       formData.append("preco", novoProduto.preco);
       formData.append("altura", novoProduto.altura);
       formData.append("diametro", novoProduto.diametro);
+      formData.append("mostrarEmNew", novoProduto.mostrarEmNew);
       if (novoProduto.imagem) {
         formData.append("imagem", novoProduto.imagem);
       }
@@ -183,6 +196,42 @@ const AdminPage = () => {
     }
   };
 
+  const handleAdicionarNovidade = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      Object.entries(novoProdutoNovidade).forEach(([k, v]) => {
+        if (k !== "imagem") {
+          formData.append(k, v);
+        }
+      });
+      if (novoProdutoNovidade.imagem) {
+        formData.append("imagem", novoProdutoNovidade.imagem);
+      }
+
+      await fetch("http://localhost:5000/api/produtos", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });
+
+      alert("Novidade adicionada!");
+      setMostrarModalNovidade(false);
+      setNovoProdutoNovidade({
+        nome: "",
+        categoria: "",
+        preco: "",
+        imagem: "",
+        altura: "",
+        diametro: "",
+        mostrarEmNew: true,
+      });
+      buscarProdutos();
+    } catch (err) {
+      console.error("Erro ao adicionar novidade:", err);
+    }
+  };
+
   return (
     <div className="admin-container">
       <header className="admin-header">
@@ -214,6 +263,13 @@ const AdminPage = () => {
         >
           Adicionar Novo Bolo
         </button>
+        <button
+          className="botao-adicionar-novidade"
+          onClick={() => setMostrarModalNovidade(true)}
+        >
+          Adicionar Novidade
+        </button>
+
         <ul className="produtos-lista">
           {produtos.map((produto) => (
             <li className="produto-item" key={produto._id}>
@@ -327,11 +383,11 @@ const AdminPage = () => {
               <label className="checkbox-inline">
                 <input
                   type="checkbox"
-                  checked={produtoEditando?.isNew || false}
+                  checked={produtoEditando?.mostrarEmNew || false}
                   onChange={(e) =>
                     setProdutoEditando({
                       ...produtoEditando,
-                      isNew: e.target.checked,
+                      mostrarEmNew: e.target.checked,
                     })
                   }
                 />
@@ -413,9 +469,12 @@ const AdminPage = () => {
               <label className="checkbox-inline">
                 <input
                   type="checkbox"
-                  checked={novoProduto.isNew}
+                  checked={novoProduto.mostrarEmNew}
                   onChange={(e) =>
-                    setNovoProduto({ ...novoProduto, isNew: e.target.checked })
+                    setNovoProduto({
+                      ...novoProduto,
+                      mostrarEmNew: e.target.checked,
+                    })
                   }
                 />
                 Mostrar em “New”
@@ -426,6 +485,100 @@ const AdminPage = () => {
                 <button
                   type="button"
                   onClick={() => setMostrarModalAdicionar(false)}
+                >
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+      {mostrarModalNovidade && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Adicionar Novidade</h3>
+            <form onSubmit={handleAdicionarNovidade}>
+              <input
+                type="text"
+                placeholder="Nome do Produto"
+                value={novoProdutoNovidade.nome}
+                onChange={(e) =>
+                  setNovoProdutoNovidade({
+                    ...novoProdutoNovidade,
+                    nome: e.target.value,
+                  })
+                }
+                required
+              />
+              <select
+                value={novoProdutoNovidade.categoria}
+                onChange={(e) =>
+                  setNovoProdutoNovidade({
+                    ...novoProdutoNovidade,
+                    categoria: e.target.value,
+                  })
+                }
+                required
+              >
+                <option value="">Selecione uma categoria</option>
+                {nomesDasCategorias.map((c, i) => (
+                  <option key={i} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="number"
+                placeholder="Preço"
+                value={novoProdutoNovidade.preco}
+                onChange={(e) =>
+                  setNovoProdutoNovidade({
+                    ...novoProdutoNovidade,
+                    preco: e.target.value,
+                  })
+                }
+                required
+              />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                  setNovoProdutoNovidade({
+                    ...novoProdutoNovidade,
+                    imagem: e.target.files[0],
+                  })
+                }
+              />
+              <input
+                type="text"
+                placeholder="Altura"
+                value={novoProdutoNovidade.altura}
+                onChange={(e) =>
+                  setNovoProdutoNovidade({
+                    ...novoProdutoNovidade,
+                    altura: e.target.value,
+                  })
+                }
+              />
+              <input
+                type="text"
+                placeholder="Diâmetro"
+                value={novoProdutoNovidade.diametro}
+                onChange={(e) =>
+                  setNovoProdutoNovidade({
+                    ...novoProdutoNovidade,
+                    diametro: e.target.value,
+                  })
+                }
+              />
+
+              {/* mostrarEmNew já fixo em true – não exibe checkbox */}
+
+              <div className="modal-botoes">
+                <button type="submit">Adicionar</button>
+                <button
+                  type="button"
+                  onClick={() => setMostrarModalNovidade(false)}
                 >
                   Cancelar
                 </button>

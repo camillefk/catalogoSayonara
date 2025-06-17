@@ -1,18 +1,17 @@
 // src/pages/HomePage.jsx
-import { useNavigate } from 'react-router-dom';
-import { FaUserCircle } from 'react-icons/fa';
-import { TbCategoryFilled } from 'react-icons/tb';
-import SearchBar from '../components/searchBar/searchBar';
-import WelcomeCard from '../components/welcomeCard/welcomeCard';
-import VerseSection from '../components/verseSection/verseSection';
-import CategoryCard from '../components/categoryCard/categoryCard';
-import NewCard from '../components/newCard/newCard';
-import newIcon from '../assets/new-icon.png';
-import categorias from '../utils/categorias';
-import categoryIcon from '../assets/category-icon.png';
-import '../styles/homePage.css';
-import { useState, useEffect } from 'react';
-
+import { useNavigate } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
+import { TbCategoryFilled } from "react-icons/tb";
+import SearchBar from "../components/searchBar/searchBar";
+import WelcomeCard from "../components/welcomeCard/welcomeCard";
+import VerseSection from "../components/verseSection/verseSection";
+import CategoryCard from "../components/categoryCard/categoryCard";
+import NewCard from "../components/newCard/newCard";
+import newIcon from "../assets/new-icon.png";
+import categorias from "../utils/categorias";
+import categoryIcon from "../assets/category-icon.png";
+import "../styles/homePage.css";
+import { useState, useEffect } from "react";
 
 const HomePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -21,11 +20,14 @@ const HomePage = () => {
   useEffect(() => {
     const buscarNovosProdutos = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/produtos');
-        const data = await response.json();
+        const res = await fetch(
+          "http://localhost:5000/api/produtos?mostrarEmNew=true"
+        );
+        const data = await res.json();
         setNovosProdutos(data);
+        setCurrentIndex(0);
       } catch (error) {
-        console.error('Erro ao buscar produtos:', error);
+        console.error("Erro ao buscar produtos:", error);
       }
     };
 
@@ -41,7 +43,8 @@ const HomePage = () => {
   // Função para retroceder o carrossel
   const prevSlide = () => {
     setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + novosProdutos.length) % novosProdutos.length
+      (prevIndex) =>
+        (prevIndex - 1 + novosProdutos.length) % novosProdutos.length
     );
   };
 
@@ -53,13 +56,16 @@ const HomePage = () => {
 
   return (
     <div className="homepage-container">
-      <div className="search-bar-container">
-        <SearchBar placeholder="Digite o nome ou tema do bolo..." />
-        <button className="saiba-mais-button">Saiba mais</button>
-        <FaUserCircle className="user-icon" onClick={() => navigate('/login')} />
+      <div className="navbar-container">
+        <div className="verse-wrapper">
+          <VerseSection />
+        </div>
+        <FaUserCircle
+          className="user-icon"
+          onClick={() => navigate("/login")}
+        />
       </div>
       <hr className="separator" />
-      <VerseSection />
       <div className="welcome-card">
         <WelcomeCard />
       </div>
@@ -76,9 +82,18 @@ const HomePage = () => {
         <button className="carousel-arrow left" onClick={prevSlide}>
           &#8592;
         </button>
-        {novosProdutos.map((produto, index) => (
-          <NewCard key={index} produto={produto} />
-        ))}
+        {novosProdutos.length > 0 ? (
+          novosProdutos.map((produto, index) =>
+            produto ? (
+              <NewCard key={index} produto={produto} />
+            ) : (
+              <p key={index}>Produto inválido</p>
+            )
+          )
+        ) : (
+          <p>Nenhum produto novo disponível</p>
+        )}
+
         <button className="carousel-arrow right" onClick={nextSlide}>
           &#8594;
         </button>

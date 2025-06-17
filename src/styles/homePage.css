@@ -12,52 +12,35 @@ html, body {
   padding: 0;
   font-family: 'Poppins', sans-serif;
 }
-  
-  
-.search-bar-container {
+
+.navbar-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 1200px;
   padding: 10px 20px;
+  position: relative;
+  width: 100%;
   box-sizing: border-box;
 }
-  
 
-.search-bar-container input {
-  width: 70%;
-  padding: 8px;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-  
-
-.saiba-mais-button {
-  width: 20%;
-  padding: 10px 0px;
-  font-size: 1rem;
-  border: none;
-  background-color: #e2c100;
-  color: white;
-  border-radius: 20px;
-  cursor: pointer;
-}
-  
-.saiba-mais-button:hover {
-  background-color: #d2b302;
-}
-  
-.user-icon {
-  width: 10%;
-  font-size: 1.5rem;
-  cursor: pointer;
+.verse-wrapper {
+  max-width: 600px; 
+  width: 100%;
   text-align: center;
+  padding: 0 40px;
 }
+
+.user-icon {
+  position: absolute;
+  right: 20px;
+  font-size: 3rem;
+  color: #e2c100;
+  cursor: pointer;
+}
+
   
 .separator {
-  width: 95%;
+  width: 97%;
   border: 0;
   border-top: 1px solid #000000;
   margin-top: 10px;

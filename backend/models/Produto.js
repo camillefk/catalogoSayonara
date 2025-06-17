@@ -29,7 +29,7 @@ const produtoSchema = new mongoose.Schema({
         type: [String], //array de datas
         default: [],
     },
-    isNew: {
+    mostrarEmNew: {
         type: Boolean,
         default: false
     },

@@ -22,11 +22,11 @@ const upload = multer({ storage });
 //rota para listar produtos por categoria
 router.get("/produtos", async (req, res) => {
   try {
-    const { categoria, isNew } = req.query;
+    const { categoria, mostrarEmNew } = req.query;
     const filtro = {};
 
     if (categoria && categoria !== 'todos') filtro.categoria = categoria;
-    if (isNew === 'true') filtro.isNew = true;
+    if (mostrarEmNew === 'true') filtro.mostrarEmNew = true;
 
     const produtos = await Produto.find(filtro);
 
@@ -39,11 +39,11 @@ router.get("/produtos", async (req, res) => {
 //rota para adicionar um produto
 router.post('/produtos', upload.single('imagem'), async (req, res) => {
   try {
-    const { nome, categoria, preco, altura, diametro, isNew = false } = req.body;
+    const { nome, categoria, preco, altura, diametro, mostrarEmNew = false } = req.body;
 
     const imagem = req.file ? `/uploads/${req.file.filename}` : '';
 
-    const novoProduto = new Produto({ nome, categoria, preco, imagem, altura, diametro, isNew });
+    const novoProduto = new Produto({ nome, categoria, preco, imagem, altura, diametro, mostrarEmNew });
 
     await novoProduto.save();
     res.status(201).json(novoProduto);
@@ -58,11 +58,11 @@ router.put(
   async (req, res) => {
     try {
       const {
-        nome, categoria, preco, altura, diametro, isNew
+        nome, categoria, preco, altura, diametro, mostrarEmNew
       } = req.body;
 
       const updateData = {
-        nome, categoria, preco, altura, diametro, isNew
+        nome, categoria, preco, altura, diametro, mostrarEmNew
       };
 
       // se veio arquivo, atualiza caminho da imagem
