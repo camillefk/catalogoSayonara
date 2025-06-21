@@ -1,8 +1,6 @@
 // src/pages/HomePage.jsx
 import { useNavigate } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
 import { TbCategoryFilled } from "react-icons/tb";
-import SearchBar from "../components/searchBar/searchBar";
 import WelcomeCard from "../components/welcomeCard/welcomeCard";
 import VerseSection from "../components/verseSection/verseSection";
 import CategoryCard from "../components/categoryCard/categoryCard";
@@ -56,32 +54,34 @@ const HomePage = () => {
 
   return (
     <div className="homepage-container">
-      <div className="navbar-container">
-        <div className="verse-wrapper">
-          <VerseSection />
-        </div>
-        <FaUserCircle
-          className="user-icon"
-          onClick={() => navigate("/login")}
-        />
+      {/* Remove a navbar-container, já que WelcomeCard é a navbar agora */}
+      <WelcomeCard />
+
+      <div className="verse-wrapper">
+        <VerseSection />
       </div>
-      <hr className="separator" />
-      <div className="welcome-card">
-        <WelcomeCard />
-      </div>
+
       <div className="category">
         <TbCategoryFilled className="category-icon" />
         <p>Categorias</p>
+        <p>
+          Temos o bolo ideal para cada momento especial ! Escolha uma categoria
+          abaixo:
+        </p>
       </div>
+
       <CategoryCard categorias={categorias} />
+
       <div className="new-section">
         <img src={newIcon} alt="Novidades" className="new-icon" />
         <p className="new-title">New</p>
       </div>
+
       <div className="new-products-carousel">
         <button className="carousel-arrow left" onClick={prevSlide}>
           &#8592;
         </button>
+
         {novosProdutos.length > 0 ? (
           novosProdutos.map((produto, index) =>
             produto ? (

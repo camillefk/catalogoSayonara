@@ -13,37 +13,11 @@ html, body {
   font-family: 'Poppins', sans-serif;
 }
 
-.navbar-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 20px;
-  position: relative;
-  width: 100%;
-  box-sizing: border-box;
-}
-
 .verse-wrapper {
   max-width: 600px; 
   width: 100%;
   text-align: center;
   padding: 0 40px;
-}
-
-.user-icon {
-  position: absolute;
-  right: 20px;
-  font-size: 3rem;
-  color: #e2c100;
-  cursor: pointer;
-}
-
-  
-.separator {
-  width: 97%;
-  border: 0;
-  border-top: 1px solid #000000;
-  margin-top: 10px;
 }
 
 

@@ -1,75 +1,112 @@
 .welcome-card {
   background-color: #87d8d8;
-  margin: 15px auto;
-  border-radius: 30px;
-  width: 60%;
-  height: 300px;
+  width: 100%;
+  height: 350px;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 30px;
   box-sizing: border-box;
-  overflow: hidden;
-  justify-content: space-between;
+  position: relative;
 }
 
-.card-side {
+.user-icon {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  font-size: 3rem;
+  color: #e2c100;
+  cursor: pointer;
+}
+
+.card-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
+}
+
+/* Lado esquerdo (texto) */
+.text-container {
   flex: 1;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px; /* mais espaço entre h1, p e os botões */
 }
 
 /* Título */
 .welcome-card h1 {
   font-family: "Petit Formal Script", cursive;
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 3.5rem;
   color: #000000;
   margin: 0;
 }
 
 /* Parágrafo */
 .welcome-card p {
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: #000000;
-  max-width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  text-align: left;
-  line-height: 1.4;
-}
-
-/* Container do texto */
-.text-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  line-height: 1.6;
+  max-width: 85%;
+  margin: 0;
 }
 
 /* Imagem */
 .logo-img {
   height: 90%;
-  max-height: 90%;
+  max-height: 280px;
+  width: auto;
   object-fit: contain;
-  margin-left: 30px;
+  margin-left: 40px;
+  padding-right: 30px; /* aumenta o espaço da direita */
 }
 
-/* Botão */
+/* Botões */
+.buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Botão principal */
 .button-card {
-  width: 25%;
-  font-family: 'Poppins', sans-serif;
+  padding: 10px 18px;
+  font-size: 1.1rem;
   font-weight: bold;
-  padding: 8px;
-  font-size: 1rem;
   border: none;
+  border-radius: 20px;
   background-color: #e2c100;
   color: white;
-  border-radius: 20px;
+  font-family: 'Poppins', sans-serif;
   cursor: pointer;
-  align-self: flex-start;
+  transition: background-color 0.3s;
 }
+
+.button-card:hover {
+  background-color: #cfb200;
+}
+
+/* Botões sociais */
+.icon-button {
+  font-size: 1.5rem;
+  color: #333e54;
+  background-color: white;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background-color 0.3s;
+  text-decoration: none;
+}
+
+.icon-button:hover {
+  transform: scale(1.1);
+  background-color: #e2c100;
+  color: white;
+}
+
 
 
 @media (max-width: 768px) {
