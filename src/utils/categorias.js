@@ -1,30 +1,34 @@
-import categoryIcon from '../assets/category-icon.png';
+import jardimIcon from '../assets/jardim.png';
+import princesasIcon from '../assets/princesas.png';
+import fazendinhaIcon from '../assets/fazendinha.png';
+import quinzeIcon from '../assets/quinze.png';
+import tartarugaIcon from '../assets/tartaruga.png';
 
 const categorias = [
-  { nome: 'Jardim', imagem: categoryIcon },
-  { nome: 'Princesas', imagem: categoryIcon },
-  { nome: 'Fazendinha', imagem: categoryIcon },
-  { nome: '15 anos', imagem: categoryIcon },
-  { nome: 'Personagens', imagem: categoryIcon },
-  { nome: 'Disney', imagem: categoryIcon },
-  { nome: 'Heróis', imagem: categoryIcon },
-  { nome: 'Fundo do Mar', imagem: categoryIcon },
-  { nome: 'Carros', imagem: categoryIcon },
-  { nome: 'Adulto', imagem: categoryIcon },
-  { nome: 'Casamento', imagem: categoryIcon },
-  { nome: 'Sereia', imagem: categoryIcon },
-  { nome: 'Futebol', imagem: categoryIcon },
-  { nome: 'Barbie', imagem: categoryIcon },
-  { nome: 'Circo', imagem: categoryIcon },
-  { nome: 'Safari', imagem: categoryIcon },
-  { nome: 'Natal', imagem: categoryIcon },
-  { nome: 'ABC', imagem: categoryIcon },
-  { nome: 'Chá Revelação', imagem: categoryIcon },
-  { nome: 'Bosque', imagem: categoryIcon },
-  { nome: 'Meninos', imagem: categoryIcon },
-  { nome: 'Meninas', imagem: categoryIcon },
-  { nome: 'Diversos', imagem: categoryIcon },
-  { nome: 'Todos', imagem: categoryIcon },
+  { nome: 'Jardim', imagem: jardimIcon },
+  { nome: 'Princesas', imagem: princesasIcon },
+  { nome: 'Fazendinha', imagem: fazendinhaIcon },
+  { nome: '15 anos', imagem: quinzeIcon },
+  { nome: 'Personagens' },
+  { nome: 'Disney' },
+  { nome: 'Heróis' },
+  { nome: 'Fundo do Mar', imagem: tartarugaIcon },
+  { nome: 'Carros' },
+  { nome: 'Adulto' },
+  { nome: 'Casamento' },
+  { nome: 'Sereia' },
+  { nome: 'Futebol' },
+  { nome: 'Barbie' },
+  { nome: 'Circo' },
+  { nome: 'Safari' },
+  { nome: 'Natal' },
+  { nome: 'ABC' },
+  { nome: 'Chá Revelação' },
+  { nome: 'Bosque' },
+  { nome: 'Meninos' },
+  { nome: 'Meninas' },
+  { nome: 'Diversos' },
+  { nome: 'Todos' },
 ];
 
 export const nomesDasCategorias = categorias.map(cat => cat.nome);

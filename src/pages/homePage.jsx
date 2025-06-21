@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { TbCategoryFilled } from "react-icons/tb";
 import WelcomeCard from "../components/welcomeCard/welcomeCard";
 import VerseSection from "../components/verseSection/verseSection";
-import CategoryCard from "../components/categoryCard/categoryCard";
+import CategoryTop from '../components/categoryTop/categoryTop';
 import NewCard from "../components/newCard/newCard";
 import newIcon from "../assets/new-icon.png";
 import categorias from "../utils/categorias";
-import categoryIcon from "../assets/category-icon.png";
 import "../styles/homePage.css";
 import { useState, useEffect } from "react";
 
@@ -54,23 +53,25 @@ const HomePage = () => {
 
   return (
     <div className="homepage-container">
-      {/* Remove a navbar-container, já que WelcomeCard é a navbar agora */}
       <WelcomeCard />
-
       <div className="verse-wrapper">
         <VerseSection />
       </div>
-
-      <div className="category">
-        <TbCategoryFilled className="category-icon" />
-        <p>Categorias</p>
-        <p>
-          Temos o bolo ideal para cada momento especial ! Escolha uma categoria
-          abaixo:
-        </p>
+      <div className="content-wrapper">
+        <hr />
+        <div className="category">
+          <div className="category-header">
+            <TbCategoryFilled className="category-icon" />
+            <p className="category-title">Categorias</p>
+          </div>
+          <p className="category-description">
+            Temos o bolo ideal para cada momento especial! Escolha uma categoria
+            abaixo:
+          </p>
+        </div>
       </div>
-
-      <CategoryCard categorias={categorias} />
+      <CategoryTop />
+      
 
       <div className="new-section">
         <img src={newIcon} alt="Novidades" className="new-icon" />

@@ -20,6 +20,57 @@ html, body {
   padding: 0 40px;
 }
 
+.content-wrapper {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 20px; /* responsivo em telas pequenas */
+}
+
+/* HR */
+.content-wrapper hr {
+  width: 100%;
+  border: none;
+  border-top: 2px solid #e2c100;
+  margin: 40px 0 20px 0;
+}
+
+/* Categoria (sem max-width aqui!) */
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* Header com ícone e título */
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.category-icon {
+  font-size: 2.2rem;
+  color: #e2c100;
+}
+
+.category-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333e54;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+.category-description {
+  font-size: 1.2rem;
+  color: #000;
+  line-height: 1.5;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
 
 
   @media (max-width: 768px) {
