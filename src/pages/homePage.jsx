@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { TbCategoryFilled } from "react-icons/tb";
 import WelcomeCard from "../components/welcomeCard/welcomeCard";
 import VerseSection from "../components/verseSection/verseSection";
-import CategoryTop from '../components/categoryTop/categoryTop';
+import CategoryTop from "../components/categoryTop/categoryTop";
 import NewCard from "../components/newCard/newCard";
+import ProductCarousel from "../components/productCarousel/productCarousel";
 import newIcon from "../assets/new-icon.png";
 import categorias from "../utils/categorias";
 import "../styles/homePage.css";
@@ -57,6 +58,7 @@ const HomePage = () => {
       <div className="verse-wrapper">
         <VerseSection />
       </div>
+
       <div className="content-wrapper">
         <hr />
         <div className="category">
@@ -69,35 +71,23 @@ const HomePage = () => {
             abaixo:
           </p>
         </div>
+
+        <CategoryTop />
+
+        <div className="new-section">
+          <img src={newIcon} alt="Novidades" className="new-icon" />
+          <p className="new-title">New</p>
+        </div>
       </div>
-      <CategoryTop />
-      
 
-      <div className="new-section">
-        <img src={newIcon} alt="Novidades" className="new-icon" />
-        <p className="new-title">New</p>
-      </div>
-
-      <div className="new-products-carousel">
-        <button className="carousel-arrow left" onClick={prevSlide}>
-          &#8592;
-        </button>
-
-        {novosProdutos.length > 0 ? (
-          novosProdutos.map((produto, index) =>
-            produto ? (
-              <NewCard key={index} produto={produto} />
-            ) : (
-              <p key={index}>Produto inválido</p>
-            )
-          )
-        ) : (
-          <p>Nenhum produto novo disponível</p>
-        )}
-
-        <button className="carousel-arrow right" onClick={nextSlide}>
-          &#8594;
-        </button>
+      <div className="new-wrapper">
+        <div className="content-wrapper2">
+          <ProductCarousel
+            produtos={novosProdutos}
+            prevSlide={prevSlide}
+            nextSlide={nextSlide}
+          />
+        </div>
       </div>
     </div>
   );

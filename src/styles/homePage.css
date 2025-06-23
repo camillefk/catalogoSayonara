@@ -71,6 +71,34 @@ html, body {
   margin: 0;
 }
 
+.new-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  /* agora dentro da content-wrapper, sem width nem margin auto */
+}
+
+.new-icon {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  color: #e2c100;
+}
+
+.new-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333e54;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+.new-wrapper {
+  width: 100%;
+  background-color: #87d8d8;
+  padding: 40px 0;
+}
 
 
   @media (max-width: 768px) {

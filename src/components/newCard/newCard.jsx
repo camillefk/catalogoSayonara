@@ -1,3 +1,5 @@
+import './newCard.css';
+
 const NewCard = ({ produto }) => {
   if (!produto) return null;
 
@@ -5,11 +7,14 @@ const NewCard = ({ produto }) => {
 
   console.log("Imagem recebida:", produto.imagem);
 
-
   return (
     <div className="new-card">
       <img
-        src={`${API_URL}/uploads/${produto.imagem}`}
+        src={
+          produto.imagem.startsWith("/uploads")
+            ? `${API_URL}${produto.imagem}`
+            : `${API_URL}/uploads/${produto.imagem}`
+        }
         alt={produto.nome || "Imagem do produto"}
         className="new-card-image"
         onError={(e) => (e.target.style.display = "none")}

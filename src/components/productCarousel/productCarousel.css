@@ -1,0 +1,22 @@
+.new-products-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px;
+  scroll-behavior: smooth;
+}
+
+.carousel-arrow {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #333e54;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  color: #e2c100;
+}
